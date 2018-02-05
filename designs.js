@@ -3,17 +3,36 @@
 
 // When size is submitted by the user, call makeGrid()
 
+//
+
 function makeGrid() {
+  $('#pixel_canvas').children().remove(); //erasure of existing grid
+  let newHeight = $('#input_height').val();
+  let newWidth = $('#input_height').val();
+//rows
+  for (i=1, i<newWidth, i++) {
+    $('#pixel_canvas').appendChild('<tr></tr>');
+  };
+//cols
+  for (j=1, j<newHeight, j++) {
+    $('tr').appendChild('<td></td>');
+  };
+
+};
 
 
-}
-/* event listener for creating the grid after submit button is pressed
-or maybe i should make the function inside event listener, not seperately? research!*/
+//event listener for creating the grid after submit button is pressed
 $('#submit-button').on('click', makeGrid());
 
-
+//color picker
 function colorPicker() {
+  let chosenColor = $('#colorPicker').val();
+};
 
-}
-
-/* add event listener for table parts to be colored, same class for every table part to listen on*/
+//aprxmt how coloring will work
+$('td').on('click', paint() {
+  color: chosenColor;
+});
+$('td').on('dblclick', paint() {
+  color: none;
+});

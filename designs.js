@@ -3,36 +3,34 @@
 
 // When size is submitted by the user, call makeGrid()
 
-//
+let table = $('#pixel_canvas');
+let chosenColor = $('#colorPicker').val();
 
 function makeGrid() {
-  $('#pixel_canvas').children().remove(); //erasure of existing grid
+  table.children().remove(); //erasure of existing grid
   let newHeight = $('#input_height').val();
-  let newWidth = $('#input_height').val();
+  let newWidth = $('#input_width').val();
 //rows
-  for (i=1, i<newWidth, i++) {
-    $('#pixel_canvas').appendChild('<tr></tr>');
-  };
+  for (r=0, r<newHeight, r++) {
+    table.append('<tr></tr>');
 //cols
-  for (j=1, j<newHeight, j++) {
-    $('tr').appendChild('<td></td>');
+    for (c=0, c<newWidth, c++) {
+        table.children().last().append('<td></td>');
+    };
   };
-
 };
-
-
-//event listener for creating the grid after submit button is pressed
-$('#submit-button').on('click', makeGrid());
-
-//color picker
-function colorPicker() {
-  let chosenColor = $('#colorPicker').val();
-};
-
-//aprxmt how coloring will work
-$('td').on('click', paint() {
-  color: chosenColor;
+//preventing reload
+$("input[type='submit']").click(function(event) {
+  event.preventDefault();
+  makeGrid();
 });
-$('td').on('dblclick', paint() {
-  color: none;
+
+
+//coloring on click
+table.on('click', 'td', coloring() {
+		$(this).css('background-color', chosenColor);
+	});
+//removing color on double click
+table.on('dblclick','td', removeColor() {
+   $(this).css('background-color', none)
 });
